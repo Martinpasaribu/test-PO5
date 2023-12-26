@@ -14,6 +14,14 @@ app.use( cors ({
     origin: 'http://localhost:3000, https://project-05-app.vercel.app/'
 
 }))
+
+app.use(cors(
+    {
+        origin: ["http://localhost:3000","https://project-05-app.vercel.app"],
+        methods: ["POST", "GET", "PATCH", "DELETE" ], // Perubahan disini ke 'methods'
+        credentials: true,
+    }));
+
 app.use(cookieParser());
 app.use(express.json());
 app.use(router);
