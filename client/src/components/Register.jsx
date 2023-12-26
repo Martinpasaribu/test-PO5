@@ -16,7 +16,7 @@ const Register = () => {
         e.preventDefault();
 
         try {
-                await  axios.post("http://localhost:5000/users", 
+                await  axios.post("https://project-05-three.vercel.app/users", 
                 {
                     name: name,
                     email:email,

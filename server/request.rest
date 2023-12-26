@@ -2,6 +2,12 @@ GET http://localhost:5000/users
 Content-Type: application/json
 
 ###
+GET https://project-05-three.vercel.app/
+Content-Type: application/json
+
+
+
+###
 GET http://localhost:5000/users
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsIm5hbWUiOiJhZG1pbiBQYXNhcmlidSIsImVtYWlsIjoiYWRtaW5AZ21haWwuY29tIiwiaWF0IjoxNzAzMDg4NjQ3LCJleHAiOjE3MDMwODg2Njd9.Str1u0kl4uy5ITdM1opd17yMIcrK-wsPJY3gmAOTxXs
 
