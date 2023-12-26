@@ -13,7 +13,7 @@ export  const refreshToken = async (req, res) => {
         const user = await prisma.users.findMany( {
             where : {
                 refresh_token: refreshToken
-            }
+            }   
         });
         if(!user[0]) return res.sendStatus(403);
         jwt.verify(refreshToken, process.env.REFRESH_TOKEN_SECRET, (err, decoded) => 
