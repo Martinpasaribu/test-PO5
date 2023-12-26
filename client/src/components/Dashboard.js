@@ -29,7 +29,7 @@ const Dashboard = () => {
     } catch (error) {
         if(error.response){
           navigate("/");
-          console.log('errornya disini')
+          console.log('errornya disini hemmmmm')
         }
     }
   }
