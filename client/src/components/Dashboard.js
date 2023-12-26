@@ -27,7 +27,7 @@ const Dashboard = () => {
 
     } catch (error) {
         if(error.response){
-          navigate("/");
+          navigate("/register");
           console.log('errornya disini')
         }
     }
