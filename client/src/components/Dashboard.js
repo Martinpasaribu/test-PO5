@@ -20,6 +20,7 @@ const Dashboard = () => {
   const refreshToken = async() => {
     try {
       const response = await axios.get('https://project-05-three.vercel.app/token');
+      if(!response) console.log('ga ada token')
       setToken(response.data.accessToken);
       const decoded = jwtDecode(response.data.accessToken);
       setName(decoded.name);
