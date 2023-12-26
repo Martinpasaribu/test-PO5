@@ -11,7 +11,7 @@ dotenv.config();
 
 app.use( cors ({
     credentials : true, 
-    origin: 'http://localhost:3000'
+    origin: 'http://localhost:3000, https://project-05-app.vercel.app/'
 
 }))
 app.use(cookieParser());
