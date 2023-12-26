@@ -53,7 +53,9 @@ export const Register = async (req, res) => {
                 where : {
                     email: req.body.email,
                 }
+                
             });
+
             
         const match = await bcrypt.compare(req.body.password, user[0].password);
         if(!match) return res.status(400).json({msg: "wrong password"});

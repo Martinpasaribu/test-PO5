@@ -1,5 +1,4 @@
 import {PrismaClient} from "@prisma/client";
-
 import jwt from 'jsonwebtoken';
 import dotenv from "dotenv";
 
@@ -9,7 +8,8 @@ const prisma = new PrismaClient();
 export  const refreshToken = async (req, res) => {
     try {
         const refreshToken = req.cookies.refreshToken;
-        if(!refreshToken) return res.sendStatus(401);
+        if(!refreshToken) return res.status(401).send(' Refresh Token neng ngendi !!!');
+
         const user = await prisma.users.findMany( {
             where : {
                 refresh_token: refreshToken

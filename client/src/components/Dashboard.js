@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 
 
 const Dashboard = () => {
-  const [nameis, setName ] = useState('');
+  const [name, setName ] = useState('');
   const [token, setToken] = useState('');
   const [expire, setExpire] = useState('');
   const navigate = useNavigate();
@@ -27,7 +27,7 @@ const Dashboard = () => {
 
     } catch (error) {
         if(error.response){
-          navigate("/register");
+          navigate("/");
           console.log('errornya disini')
         }
     }
@@ -67,7 +67,7 @@ axiosJWT.interceptors.request.use(async(config) => {
   return (
     <div className=' container mt-5'>
         <h1 className="tittle">
-            Welcome Back : {nameis} 
+            Welcome Back : {name} 
             <button onClick={getUsers} className='button is-info'> GET User </button>
             <table className='table is-striped is-fullwidth'>
               <thead>
