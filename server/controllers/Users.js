@@ -85,7 +85,7 @@ export const Register = async (req, res) => {
 
         res.cookie('refreshToken', refreshToken, {
             // sameSite:None,
-            httpOnly: true,
+            // httpOnly: true,
             secure: true,
             maxAge: 24 * 60 * 60 * 1000
         
