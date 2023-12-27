@@ -84,7 +84,8 @@ export const Register = async (req, res) => {
 
 
         
-        res.cookie(refreshToken , 'refreshToken', { secure: true, maxAge: 24 * 60 * 60 * 1000});
+        
+        res.cookie('refreshToken', refreshToken, { secure: true, maxAge: 24 * 60 * 60 * 1000 });
 
         res.json({ accessToken});
 
