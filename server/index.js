@@ -18,7 +18,7 @@ dotenv.config();
 app.use(cors(
     {
         origin: ["http://localhost:3000","https://project-05-app.vercel.app"],
-        methods: ["POST", "GET", "PATCH", "DELETE" ], // Perubahan disini ke 'methods'
+        methods: ["POST", "GET", "PATCH", "DELETE","OPTIONS" ], // Perubahan disini ke 'methods'
         credentials: true,
     }));
 
