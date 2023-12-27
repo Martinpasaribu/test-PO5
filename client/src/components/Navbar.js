@@ -10,7 +10,7 @@ const navigate = useNavigate();
 
 const logout = async()  => {
   try {
-      await axios.delete('https://project-05-three.vercel.app/logout');
+      await axios.delete('https://server-po-5.vercel.app/logout');
       navigate('/');
   } catch (error) {
     console.log(error);
