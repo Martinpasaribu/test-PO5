@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState }from 'react'
 import logo from '../img/Logo_main.png'
 import axios from 'axios';
 
@@ -7,13 +7,18 @@ import { useNavigate } from "react-router-dom";
 
 const Navbar = () => {
 const navigate = useNavigate();
+const [loggingOut, setLoggingOut] = useState(false);
 
 const logout = async()  => {
   try {
+      setLoggingOut(true);
       await axios.delete('https://server-po-5.vercel.app/logout');
       navigate('/');
   } catch (error) {
     console.log(error);
+  }
+  finally {
+    setLoggingOut(false); // Set status loggingOut ke false setelah proses logout selesai
   }
 }
 
@@ -43,10 +48,15 @@ const logout = async()  => {
         <div class="navbar-end">
           <div class="navbar-item">
             <div class="buttons">
-
+            {loggingOut ? ( // Periksa status loading untuk menampilkan pesan loading atau data
+            
+            <div className="spinner is-centered"></div>
+            
+          ) : (
               <button onClick={logout} class="button is-light">
                 Log Out
               </button>
+          )}
             </div>
           </div>
         </div>

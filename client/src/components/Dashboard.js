@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import  { jwtDecode }  from "jwt-decode";
 import { useNavigate } from "react-router-dom";
-
+import './spin.css'
 
 
 const Dashboard = () => {
@@ -72,15 +72,13 @@ axiosJWT.interceptors.request.use(async(config) => {
     setLoading(false);
   }
 
+
+  // <button onClick={getUsers} className='button is-info'> GET User </button>
+
   return (
     <div className=' container mt-5'>
         <h1 className="tittle">
-            Welcome Back : {name} 
-            <button onClick={getUsers} className='button is-info'> GET User </button>
-
-            {loading ? ( // Periksa status loading untuk menampilkan pesan loading atau data
-            <h2>Loading...</h2>
-          ) : (
+            Welcome Back : {name}       
             <table className='table is-striped is-fullwidth'>
             <thead>
             <tr>
@@ -89,6 +87,11 @@ axiosJWT.interceptors.request.use(async(config) => {
               <th> Email</th>
             </tr>
           </thead>
+          {loading ? ( // Periksa status loading untuk menampilkan pesan loading atau data
+            
+          <div className="spinner"></div>
+          
+        ) : (
           <tbody>
             { users.map((user, index) => (
             <tr key =  {user.id}>
@@ -100,9 +103,10 @@ axiosJWT.interceptors.request.use(async(config) => {
             ))}
 
           </tbody>
-            </table>
-          )}
+          ) }
 
+            </table>
+         
 
             <table className='table is-striped is-fullwidth'>
               

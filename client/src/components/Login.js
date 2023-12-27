@@ -8,9 +8,11 @@ const Login = () => {
   const navigate = useNavigate();
   const [msg, setMsg] = useState('');
 
+  const [loading, setLoading] = useState(false);
+
   const Auth  = async(e) =>{
     e.preventDefault();
-
+    setLoading(true);
     try {
             await  axios.post("https://server-po-5.vercel.app/login", 
             {
@@ -24,6 +26,9 @@ const Login = () => {
         }
 
     }
+    finally {
+      setLoading(false); 
+    }
 }
 
 
@@ -33,8 +38,16 @@ const Login = () => {
         <div className="container">
           <div className="columns is-centered">
             <div className="column  is-4-desktop">
+
               <form onSubmit={Auth} action="" className="box">
-                <p className='has-text-centered' > {msg}</p>
+             
+              <p className='has-text-centered' > {msg}</p>
+              {loading ? ( // Periksa status loading untuk menampilkan pesan loading atau data
+            
+              <div className="spinner m-auto "></div>
+              
+            ) : (
+                
                 <div className="field mt-5 " >
                   <label  className="label">
                     Email dan Username
@@ -49,12 +62,17 @@ const Login = () => {
                     <input type="password " className="input" value={password} onChange={(e) => setPassword(e.target.value)} placeholder=':(----:(' />
                   </div>
                   <div className="field mt-5">
+
                       <button className="button is-success is-fullwidth">
                         Login
                       </button>
+                
                   </div>
+                
                 </div>
+                )}
               </form>
+
             </div>
           </div>
           
