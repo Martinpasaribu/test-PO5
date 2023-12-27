@@ -13,6 +13,7 @@ const Dashboard = () => {
   const [users, setUsers] = useState([]);
   
   useEffect(() => {
+    
     refreshToken();
     getUsers();
   }, []);
@@ -42,6 +43,7 @@ axiosJWT.interceptors.request.use(async(config) => {
   const currentDate = new Date();
   if(expire * 1000 < currentDate.getTime()){
      const response = await axios.get('https://server-po-5.vercel.app/token');
+     if (!response) return <h2>Loading... yah benatar</h2>;
     config.headers.Authorization = `Bearer ${response.data.accessToken}`;
     setToken(response.data.accessToken);
     const decoded = jwtDecode(response.data.accessToken);
