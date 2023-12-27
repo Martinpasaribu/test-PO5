@@ -12,6 +12,8 @@ const Dashboard = () => {
   const navigate = useNavigate();
   const [users, setUsers] = useState([]);
   
+  const [loading, setLoading] = useState(true);
+
   useEffect(() => {
     
     refreshToken();
@@ -27,7 +29,7 @@ const Dashboard = () => {
       const decoded = jwtDecode(response.data.accessToken);
       setName(decoded.name);
       setExpire(decoded.exp);
-
+      setLoading(false);
     } catch (error) {
         if(error.response){
           navigate("/");
@@ -43,7 +45,7 @@ axiosJWT.interceptors.request.use(async(config) => {
   const currentDate = new Date();
   if(expire * 1000 < currentDate.getTime()){
      const response = await axios.get('https://server-po-5.vercel.app/token');
-     if (!response) return <h2>Loading... yah benatar</h2>;
+     
     config.headers.Authorization = `Bearer ${response.data.accessToken}`;
     setToken(response.data.accessToken);
     const decoded = jwtDecode(response.data.accessToken);
@@ -60,12 +62,14 @@ axiosJWT.interceptors.request.use(async(config) => {
 
 
   const getUsers = async() => {
+    setLoading(true);
     const response = await axiosJWT.get('https://server-po-5.vercel.app/users', {
       headers: {
         Authorization: ` Bearer ${token} `
       }       
     });
     setUsers(response.data);
+    setLoading(false);
   }
 
   return (
@@ -73,25 +77,35 @@ axiosJWT.interceptors.request.use(async(config) => {
         <h1 className="tittle">
             Welcome Back : {name} 
             <button onClick={getUsers} className='button is-info'> GET User </button>
+
+            {loading ? ( // Periksa status loading untuk menampilkan pesan loading atau data
+            <h2>Loading...</h2>
+          ) : (
             <table className='table is-striped is-fullwidth'>
-              <thead>
-                <tr>
-                  <th> No. </th>
-                  <th> Name </th>
-                  <th> Email</th>
-                </tr>
-              </thead>
-              <tbody>
-                { users.map((user, index) => (
-                <tr key =  {user.id}>
-                  <td>{index + 1}</td>
-                  <td>{user.email}</td>
-                  <td>{user.email}</td>
-                </tr>
+            <thead>
+            <tr>
+              <th> No. </th>
+              <th> Name </th>
+              <th> Email</th>
+            </tr>
+          </thead>
+          <tbody>
+            { users.map((user, index) => (
+            <tr key =  {user.id}>
+              <td>{index + 1}</td>
+              <td>{user.email}</td>
+              <td>{user.email}</td>
+            </tr>
 
-                ))}
+            ))}
 
-              </tbody>
+          </tbody>
+            </table>
+          )}
+
+
+            <table className='table is-striped is-fullwidth'>
+              
             </table>
         </h1>
     </div>
